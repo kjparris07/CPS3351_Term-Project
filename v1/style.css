@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: "Noto Sans", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "DM Serif Text", serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+header {
+    border-bottom: 2px solid darkolivegreen;
+    box-shadow: 0 2px 4px 2px gainsboro;
+}
+
+footer {
+    position: absolute;
+    inset-block-end: 0;
+    background-color: darkolivegreen;
+    color: white;
+    height: 36px;
+    line-height: 36px;
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+}
+
+#businessName {
+    width: 100vw;
+    background-color: darkolivegreen;
+    color: white;
+    height: 72px;
+    padding: 0 24px;
+}
+
+#businessName h1 {
+    font-size: 36px;
+    line-height: 72px;
+}
+
+ul {
+    list-style: none;
+    display: block;
+    background-color: gainsboro;
+    width: 100vw;
+    height: 48px;
+}
+
+ul li {
+    display: block;
+    float: left;
+}
+
+ul li a {
+    display: block;
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+    padding: 13px 24px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+ul li a:hover {
+    background-color: silver;
+}
+
+.main {
+    width: 50%;
+    background-color: white;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid darkolivegreen;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 2px gainsboro;
+}
+
+form {
+    margin: 20px auto;
+}
+
+form select {
+    padding: 0 5px;
+}
+
+#zoneLabel {
+    display: block;
+}
+
+#spaceId {
+    display: block;
+    width: fit-content;
+    height: 137px;
+}
+
+#space, #spaceLabel, #timeLabel, #time {
+    display: none;
+}
+
+#spaceId p {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin: 10px 0;
+}
+
+#spaceId p select {
+    margin-left: 10px;
+}
+
+#toPayment {
+    display: none;
+}
+
+#payInfo {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#payInfo p {
+    margin: 15px 0;
+}
+
+#payInfo p input, #payInfo p select {
+    margin-left: 5px;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+    padding: 5px 10px;
+}
+
+#processing {
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#confirmation {
+    text-align: center;
+}
+
+#confirmation > * {
+    margin: 10px auto;
+}
+
+#locationContainer {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#left {
+    text-align: right;
+}
+
+#right {
+    text-align: left;
+    margin-left: 10px;
+}

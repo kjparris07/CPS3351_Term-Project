@@ -1,0 +1,64 @@
+<html>
+    <body onload="showZones()">
+        <div class="main">
+            <form action="payment.php" method="get" id="spaceId">
+                <p>
+                    <label for="zone" id="zoneLabel">Select Current Zone Number:</label>
+                    <select name="zone" id="zone" onchange="showSpaces(this.value)" required> 
+                        <option value="" selected disabled>Select One</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="space" id="spaceLabel">Select Current Space Number:</label>
+                    <select name="space" id="space" onchange="showTime()" required>
+                        <option value="" selected disabled>Select One</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="time" id="timeLabel">Desired Hours:</label>
+                    <select name="time" id="time" required>
+                        <option value="3">30 minutes ($3)</option>
+                        <option value="5" selected>1 hour ($5)</option>
+                        <option value="9">2 hours ($9)</option>
+                        <option value="13.5">3 hours ($13.50)</option>
+                    </select>
+                </p>
+                <button type="submit" id="toPayment" class="submit">Proceed to Payment</button>
+            </form>
+        </div>
+    </body>
+</html>
+
+<script>
+    function showZones() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("zone").innerHTML += this.responseText;
+            }
+        };
+        xmlhttp.open("GET","zones.php?q=",true);
+        xmlhttp.send();
+    }
+
+    function showSpaces(id) {
+        if (id != "") {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("space").innerHTML += this.responseText;
+                    document.getElementById("space").style.display = "block";
+                    document.getElementById("spaceLabel").style.display = "block";
+                }
+            };
+            xmlhttp.open("GET","spaces.php?q="+id,true);
+            xmlhttp.send();
+        }
+    }
+
+    function showTime() {
+        document.getElementById("time").style.display = "block";
+        document.getElementById("timeLabel").style.display = "block";
+        document.getElementById("toPayment").style.display = "block";
+    }
+</script>

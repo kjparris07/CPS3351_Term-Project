@@ -1,0 +1,80 @@
+<html>
+    <body onload="fillYear()">
+        <div class="main">
+            <form action="processing.php" method="post" id="payInfo">
+                <p>
+                    <label for="name">Full Name:</label>
+                    <input type="text" name="name" id="driverName" placeholder="John Doe" required>
+                </p>
+                <p>
+                    <label for="cardNum">Card Number:</label>
+                    <input type="number" name="cardNum" id="cardNum" placeholder="012345678910" required>
+                </p>
+                <p>
+                    <label for="month">Expiration Date:</label>
+                    <select name="month" id="expMonth" required>
+                        <option value="" selected disabled>Month</option>
+                        <option value="1">01</option>
+                        <option value="2">02</option>
+                        <option value="3">03</option>
+                        <option value="4">04</option>
+                        <option value="5">05</option>
+                        <option value="6">06</option>
+                        <option value="7">07</option>
+                        <option value="8">08</option>
+                        <option value="9">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                    <select name="year" id="expYear" required>
+                        <option value="" selected disabled>Year</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="code">Security Code</label>
+                    <input type="number" name="code" id="code" placeholder="1234" required>
+                </p>
+                <p>
+                    <label for="billingZip">Billing Zip Code</label>
+                    <input type="number" name="zip" id="zip" placeholder="56789" required>
+                </p>
+
+                <button type="submit" class="submit">Submit Payment</button>
+            </form>
+         </div>
+    </body>
+    
+</html>
+
+<script>
+    var cardNumInput = document.getElementById("cardNum");
+    cardNumInput.onkeydown = function(event, cardNumInput) { validateNum(event, this, 12); };
+
+    var securityInput = document.getElementById("code");
+    securityInput.onkeydown = function(event, securityInput) { validateNum(event, this, 4); };
+
+    var zipInput = document.getElementById("zip");
+    zipInput.onkeydown = function(event, zipInput) { validateNum(event, this, 5); };
+
+    function validateNum(event, caller, max) {
+        const re = /^[0-9]/;
+        var keyCode = event.code;
+        key = keyCode.substring(keyCode.length-1, keyCode.length);
+
+        if ((keyCode != "Backspace") && (!re.test(key) | caller.value.length >= max)) {
+            event.preventDefault();
+        }
+    }
+
+    function fillYear() {
+        var today = new Date;
+        var year = today.getFullYear();
+        var expYear = document.getElementById("expYear");
+
+        for (var i=year; i<year+10; i++) {
+            expYear.innerHTML += "<option value='" + i + "'>" + i + "</option>";
+        }
+    }
+
+</script>
