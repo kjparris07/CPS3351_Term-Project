@@ -1,6 +1,11 @@
 <?php
+date_default_timezone_set('America/New_York');
 include("header.php");
-if (isset($_COOKIE["zone"]) & isset($_COOKIE["spaceNum"])) {
+if (isset($_COOKIE["parking_session"])) {
+    $cookie_data = json_decode($_COOKIE["parking_session"]);
+    $zone = $cookie_data->zone;
+    $spaceNum = $cookie_data->spaceNum;
+    $expiry = $cookie_data->expiry;
     echo '<html>
         <body>
             <div class="main">
@@ -8,8 +13,8 @@ if (isset($_COOKIE["zone"]) & isset($_COOKIE["spaceNum"])) {
                     <h2>Payment Confirmation</h2>
                     <div id="locationContainer">
                         <div id="left">
-                            <p>Zone:</p>
-                            <p>Space:</p>
+                            <p>Zone: ' . $zone . '</p>
+                            <p>Space: ' . $spaceNum . '</p>
                         </div>
                         <div id="right">
                             <p><?php echo $_COOKIE["zone"] ?></p>
@@ -17,10 +22,10 @@ if (isset($_COOKIE["zone"]) & isset($_COOKIE["spaceNum"])) {
                         </div>
                     </div>
                     
-                    <p>Your parking session will end at: <span id="endTime">
-                    <?php echo json_decode($_COOKIE["user"])["expiry"]; ?>
-                    </span></p>
-                    <button id="addTime" class="submit">Add More Time</button>  
+                    <p>Your parking session will end at: <span id="endTime">' 
+                    .  date('m/d/Y H:i', (int)$expiry) . 
+                    '</span></p>
+                    <a href="home.php"><button id="addTime" class="submit" >Add More Time</button></a>  
                 </div>
                 
             </div>
