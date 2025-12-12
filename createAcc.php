@@ -1,5 +1,5 @@
 <?php
-include("header.html");
+include("header.php");
 $formEmail = $_POST["email"];
 $formPass = $_POST["pass"];
 
@@ -32,7 +32,15 @@ if (count($result) > 0) {
     $result = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
     
     $cookie_name = "user";
-    setcookie($cookie_name, $formEmail, time() + 3600);
+    $expireTime = time() + 3600;
+
+    $cookie_data = json_encode([
+        'value' => $formEmail,
+        'expiry' => $expireTime
+    ]);
+
+    setcookie($cookie_name, $cookie_data, $expireTime);
+    
     echo "<div class='main'><p>Account created successfully!</p><p><a href='home.php' id='proceedHome'>Pay for parking.</a></p></div>";
 }
 

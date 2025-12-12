@@ -1,5 +1,9 @@
 <?php
 include('header.php');
-include('checkInfo.html');
+if (isset($_COOKIE["user"])) {
+    include('checkInfo.html');
+} else {
+    include('loginRequest.html');
+}
 include('footer.html');
 ?>

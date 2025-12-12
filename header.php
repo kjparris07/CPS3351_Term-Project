@@ -13,6 +13,11 @@
     </div>
     <ul>
         <li><a href="index.php">Home</a></li>
+        <?php
+            if (isset($_COOKIE["user"])) {
+                echo '<li><a href="logout.php">Log Out</a></li>';
+            }
+        ?>
     </ul>
 </header>
 </html>
