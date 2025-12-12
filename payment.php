@@ -1,5 +1,5 @@
 <?php
-include('header.html');
+include('header.php');
 
 $zone = $_GET['zone'];
 $space = $_GET['space'];

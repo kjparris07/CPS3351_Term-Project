@@ -1,5 +1,5 @@
 <?php
-include('header.html');
+include('header.php');
 include('checkInfo.html');
 include('footer.html');
 ?>
