@@ -1,5 +1,5 @@
 <?php
 include('header.html');
-include('login.html');
+include('checkInfo.html');
 include('footer.html');
 ?>

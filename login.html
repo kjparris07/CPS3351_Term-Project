@@ -1,0 +1,57 @@
+<html>
+    <body>
+        <div class="main">
+            <div id="loginButtons">
+                <button>Login</button>
+                <button>Create Account</button>
+            </div> 
+        </div>
+        <div class="main">
+            <h2 class="mainHeading">Create Account</h2>
+            <form action="createAcc.php" method="post" id="login" oninput="validateInfo()">
+                <label for="email">Email Address:</label>
+                <input type="text" name="email" id="email">
+                <label for="pass">Password:</label>
+                <input type="password" name="pass" id="pass">
+                <label for="passConf">Confirm Password:</label>
+                <input type="password" name="passConf" id="passConf">
+                <p id="errorMessage"></p>
+                <input type="submit" value="Submit" id="accountSubmit">
+            </form>
+        </div>
+        <div class="main">
+            <h2 class="mainHeading">Login</h2>
+            <form action="login.php" method="post" id="login">
+                <label for="email">Username:</label>
+                <input type="text" name="email" id="email">
+                <label for="pass">Password:</label>
+                <input type="password" name="pass" id="pass">
+                <input type="submit" value="Submit" id="accountSubmit">
+            </form>
+        </div>
+        <script>
+            function validateInfo() {
+                var errorMessage = document.getElementById("errorMessage");
+                var email = document.getElementById("email").value;
+                var pass = document.getElementById("pass").value;
+                var passConf = document.getElementById("passConf").value;
+
+                const re = /.+@.+\..+/;
+                if (!re.test(email)) {
+                    errorMessage.innerHTML = "Please enter a valid email address.";
+                    document.getElementById("accountSubmit").style.display = "none";
+                } else if ((passConf.length > 0)&(pass != passConf)) {
+                    errorMessage.innerHTML = "Please ensure your passwords match.";
+                    document.getElementById("accountSubmit").style.display = "none";
+                } else if (passConf.length == 0) {
+                    errorMessage.innerHTML = "Please confirm your password."
+                    document.getElementById("accountSubmit").style.display = "none";
+                } else {
+                    errorMessage.innerHTML = ""
+                    document.getElementById("accountSubmit").style.display = "block";
+                }
+            }
+
+        </script>
+    </body>
+</html>

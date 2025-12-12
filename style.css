@@ -81,6 +81,49 @@ ul li a:hover {
     box-shadow: 0 2px 4px 2px gainsboro;
 }
 
+#loginButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+#loginButtons button {
+    width: 40%;
+}
+
+.mainHeading {
+    color: darkolivegreen;
+    text-align: center;
+}
+
+#login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    margin: 10px auto;
+}
+
+#login label {
+    text-align: center;
+    margin: 10px 0;
+}
+
+#login input {
+    width: 140px;
+    text-align: center;
+}
+
+#errorMessage {
+    color: darkred;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+#accountSubmit {
+    display: none;
+    margin-top: 10px;
+}
+
 form {
     margin: 20px auto;
 }
