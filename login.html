@@ -2,53 +2,84 @@
     <body>
         <div class="main">
             <div id="loginButtons">
-                <button>Login</button>
-                <button>Create Account</button>
+                <button onclick="showLogin()">Login</button>
+                <button onclick="showCreate()">Create Account</button>
             </div> 
         </div>
-        <div class="main">
-            <h2 class="mainHeading">Create Account</h2>
-            <form action="createAcc.php" method="post" id="login" oninput="validateInfo()">
+        <div class="main" id="create">
+            <form action="createAcc.php" method="post" oninput="validateCreate()">
+                <h2 class="mainHeading">Create Account</h2>
                 <label for="email">Email Address:</label>
-                <input type="text" name="email" id="email">
+                <input type="text" name="email" id="emailC">
                 <label for="pass">Password:</label>
-                <input type="password" name="pass" id="pass">
+                <input type="password" name="pass" id="passC">
                 <label for="passConf">Confirm Password:</label>
                 <input type="password" name="passConf" id="passConf">
-                <p id="errorMessage"></p>
-                <input type="submit" value="Submit" id="accountSubmit">
+                <p class="errorMessage" id="createError"></p>
+                <input type="submit" value="Submit" class="loginButton" id="createSubmit">
             </form>
         </div>
-        <div class="main">
-            <h2 class="mainHeading">Login</h2>
-            <form action="login.php" method="post" id="login">
-                <label for="email">Username:</label>
-                <input type="text" name="email" id="email">
+        <div class="main" id="login">
+            <form action="login.php" method="post" oninput="validateLogin()" on>
+                <h2 class="mainHeading">Login</h2>
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="emailL">
                 <label for="pass">Password:</label>
-                <input type="password" name="pass" id="pass">
-                <input type="submit" value="Submit" id="accountSubmit">
+                <input type="password" name="pass" id="passL">
+                <p class="errorMessage" id="loginError"></p>
+                <input type="submit" value="Submit" class="loginButton" id="loginSubmit">
             </form>
         </div>
         <script>
-            function validateInfo() {
-                var errorMessage = document.getElementById("errorMessage");
-                var email = document.getElementById("email").value;
-                var pass = document.getElementById("pass").value;
+            function showLogin() {
+                document.getElementById("login").style.display = "flex";
+                document.getElementById("create").style.display = "none";
+            }
+
+            function showCreate() {
+                document.getElementById("login").style.display = "none";
+                document.getElementById("create").style.display = "flex";
+            }
+
+            function validateCreate() {
+                var errorMessage = document.getElementById("createError");
+                var submit = document.getElementById("createSubmit");
+                var email = document.getElementById("emailC").value;
+                var pass = document.getElementById("passC").value;
                 var passConf = document.getElementById("passConf").value;
 
                 const re = /.+@.+\..+/;
                 if (!re.test(email)) {
                     errorMessage.innerHTML = "Please enter a valid email address.";
-                    document.getElementById("accountSubmit").style.display = "none";
+                    submit.style.display = "none";
                 } else if ((passConf.length > 0)&(pass != passConf)) {
                     errorMessage.innerHTML = "Please ensure your passwords match.";
-                    document.getElementById("accountSubmit").style.display = "none";
+                    submit.style.display = "none";
                 } else if (passConf.length == 0) {
                     errorMessage.innerHTML = "Please confirm your password."
-                    document.getElementById("accountSubmit").style.display = "none";
+                    submit.style.display = "none";
                 } else {
                     errorMessage.innerHTML = ""
-                    document.getElementById("accountSubmit").style.display = "block";
+                    submit.style.display = "block";
+                }
+            }
+
+            function validateLogin() {
+                var errorMessage = document.getElementById("loginError");
+                var submit = document.getElementById("loginSubmit");
+                var email = document.getElementById("emailL").value;
+                var pass = document.getElementById("passL").value;
+
+                const re = /.+@.+\..+/;
+                if (!re.test(email)) {
+                    errorMessage.innerHTML = "Please enter a valid email address.";
+                    submit.style.display = "none";
+                } else if (pass.length == 0) {
+                    errorMessage.innerHTML = "Please enter a password.";
+                    submit.style.display = "none";
+                } else {
+                    errorMessage.innerHTML = ""
+                    submit.style.display = "block";
                 }
             }
 

@@ -11,7 +11,6 @@ h1, h2, h3, h4, h5, h6 {
 
 body {
     width: 100vw;
-    height: 100vh;
 }
 
 header {
@@ -95,7 +94,11 @@ ul li a:hover {
     text-align: center;
 }
 
-#login {
+#login, #create {
+    display: none;
+}
+
+#login form, #create form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -103,23 +106,23 @@ ul li a:hover {
     margin: 10px auto;
 }
 
-#login label {
+#login form label, #create form label {
     text-align: center;
     margin: 10px 0;
 }
 
-#login input {
+#login form input, #create form input {
     width: 140px;
     text-align: center;
 }
 
-#errorMessage {
+.errorMessage {
     color: darkred;
     font-style: italic;
     margin-top: 10px;
 }
 
-#accountSubmit {
+.loginButton {
     display: none;
     margin-top: 10px;
 }

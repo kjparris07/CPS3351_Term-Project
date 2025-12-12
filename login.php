@@ -20,17 +20,13 @@ try {
     throw new PDOException($e->getMessage(), (int)$e->getCode());
 }
 
-$sql = "select * from users where email='" . $formEmail . "'";
+$sql = "select * from users where email='" . $formEmail . "' and pass=SHA1('" . $formPass . "')";
 $stmt = $pdo->query($sql);
 $result = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 
-if (count($result) > 0) {
-    echo "<div class='main'><p>This email already has an account. Please login instead.</p><p><a href='index.php' class='backToLogin'>Back to Login</a></p></div>";
+if (count($result) == 0 ) {
+    echo "<div class='main'><p>Invalid Credentials.</p><p>Please login or create an account <a href='index.php' class='backToLogin'>here</a></p></div>";
 } else {
-    $sql = "insert into users values ('" . $formEmail . "', SHA1('" . $formPass . "'))";
-    $stmt = $pdo->query($sql);
-    $result = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
-    
     $cookie_name = "user";
     $expireTime = time() + 3600;
 
@@ -40,8 +36,8 @@ if (count($result) > 0) {
     ]);
 
     setcookie($cookie_name, $cookie_data, $expireTime);
-
-    echo "<div class='main'><p>Account created successfully!</p><p><a href='home.php' id='proceedHome'>Pay for parking.</a></p></div>";
+    
+    echo "<div class='main'><p>Login successful!</p><p><a href='home.php' id='proceedHome'>Pay for parking.</a></p></div>";
 }
 
 include("footer.html");
